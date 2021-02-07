@@ -26,7 +26,21 @@ const displayCountryDetail = name => {
     // console.log(url);
     fetch(url)
     .then(res => res.json())
-    .then(data => console.log(data[0].name));
+    // show country name
+    // .then(data => console.log(data[0].name));
+    .then(data => renderCountryInfo(data[0]));
+}
+
+// display specific country information in UI
+const renderCountryInfo = country => {
+    // console.log(country);
+    const countryDiv = document.getElementById('countryDetail');
+    countryDiv.innerHTML = `
+        <h1>${country.name}</h1>
+        <p>Population: ${country.population}</p>
+        <p>Area: ${country.area}</p>
+        <img src="${country.flag}">
+    `
 }
 
 /*
