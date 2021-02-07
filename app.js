@@ -11,11 +11,22 @@ const displayCountries = countries => {
         const countryInfo = `
             <h3 class="country-name">${country.name}</h3>
             <p class="capital">${country.capital}</p>
+            <button onclick="displayCountryDetail('${country.name}')">Details</button>
         `;
         countryDiv.innerHTML = countryInfo;
 
         countriesDiv.appendChild(countryDiv);
     });
+}
+
+// call dynamic api
+const displayCountryDetail = name => {
+    // console.log(name);
+    const url = `https://restcountries.eu/rest/v2/name/${name}`
+    // console.log(url);
+    fetch(url)
+    .then(res => res.json())
+    .then(data => console.log(data[0].name));
 }
 
 /*
